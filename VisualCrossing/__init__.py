@@ -9,4 +9,7 @@ from pathlib import Path
 # TODO detailed documentation for API/Configuration File
 __homepath__ = join(Path.home(), ".visualCrossing")
 
+# set affiliation details
+__affiliation__ = "Indian Institute of Technology (IIT-ISM), Dhanbad"
+
 # init-time option registrations

@@ -1,0 +1,3 @@
+# keep a list of items to be installed using `pip install`
+# guide available at: https://pip.pypa.io/en/stable/user_guide/#requirements-files
+# information on using requirements.txt https://stackoverflow.com/questions/7225900
