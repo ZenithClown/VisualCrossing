@@ -3,20 +3,27 @@
 # run the flake code linting checks in localhost using the above command
 # other specific settings to flake8 is described below
 
+    # add per line ignores, if required
     per-file-ignores =
-        # add per line ignores, if required
         # F403 '... import *' used; unable to detect undefined names
-        __init__.py: F403
+        VisualCrossing/__init__.py: F403
     
     # setting maximum line length
     max-line-length = 127
 
-    ## the following definations can be ignored
-    ## make necessary changes, if required
-    # E20{1-3} whitespace before '{', '}', and ':' respectively
-    #   > personal preference,
-    #   > also sometimes violated by black: https://github.com/psf/black
-    # E221 multiple spaces before operator
-    # E251 unexpected spaces around keyword / parameter equals
-    # E261 at least two spaces before inline comment
-    ignore = E201, E202, E203, E221, E251, E261
+    # the following definations can be ignored
+    ignore =
+        # E20{1-3} whitespace before '{', '}', and ':' respectively
+        # as violated by black: https://github.com/psf/black
+        E201,
+        E202,
+        E203,
+        # E221 multiple spaces before operator
+        E221,
+        # E251 unexpected spaces around keyword / parameter equals
+        E251,
+        # E261 at least two spaces before inline comment
+        E261
+        # W50{3,4} line break after binary operator
+        W503,
+        W504
