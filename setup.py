@@ -18,7 +18,7 @@ PKG = "VisualCrossing" # package-name
 VERSIONFILE = join("static", "VERSION")
 try:
     VERSION = open(VERSIONFILE, "rt").read() # always read as str()
-except FileNotFoundError as err:
+except FileNotFoundError:
     raise RuntimeError("unable to run setuptools")
 
 with open("README.md", "r") as fh:

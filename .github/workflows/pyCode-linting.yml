@@ -17,7 +17,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.8]
+        # check code liniting on py37
+        # py37 is the minimum required version
+        python-version: [3.7]
 
     steps:
     - uses: actions/checkout@v2
@@ -28,7 +30,7 @@ jobs:
     - name: Installing flake8 and Upgrade pip
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8 # pytest
+        python -m pip install flake8
     - name: Lint with flake8
       run: |
         # WARNING: the project uses partial PEP-8
