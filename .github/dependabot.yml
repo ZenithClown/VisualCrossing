@@ -1,0 +1,41 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+
+  # maintain dependecies for python-packages using pip
+  - package-ecosystem: "pip"
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    labels:
+      - "pip"
+      - "dependencies"
+    assignees:
+      - "ZenithClown"
+    # add commit-message with prefix to determine dependency group
+    # more information available in documentation
+    commit-message:
+      prefix: "pip-prod"
+      prefix-development: "pip-dev"
+      include: "scope"
+    # increase pull request limit to 10 for pip dependencies
+    open-pull-requests-limit: 10
+    ignore:
+      # ignore all version check for click as:
+      # celery 5.1.2 depends on click<8.0 and >=7.0
+      - dependency-name: "click"
+      # also ignore celery update
+      # uncomment when dependency issue is resolved
+      - dependency-name: "celery"
+      
+  # maintain dependecies for github-actions
+  - package-ecosystem: "github-actions"
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "monthly"
+    labels:
+      - "github-actions"
