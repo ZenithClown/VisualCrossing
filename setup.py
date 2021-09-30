@@ -3,7 +3,11 @@
 """A setuptools based model for setting up python wrapper for VisualCrossing API"""
 
 from os import makedirs
-from os.path import join
+from os.path import (
+        join,
+        isdir
+    )
+
 from pathlib import Path
 from setuptools import setup
 from setuptools import find_packages
