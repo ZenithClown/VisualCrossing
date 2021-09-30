@@ -1,5 +1,5 @@
 <h1 align = "center">
-	Visual-Crossing Weather API <br>
+	Visual-Crossing Weather API <img src = "./assets/logo.png" height = "108" width = "200" align = "right" /><br>
 	<sub><b><i>(python, docker, rest-api, flake8)</i></b></sub> <br>
 	<a href = "https://www.linkedin.com/in/dpramanik/"><img height="16" width="16" src="https://unpkg.com/simple-icons@v3/icons/linkedin.svg"/></a>
 	<a href = "https://github.com/ZenithClown"><img height="16" width="16" src="https://unpkg.com/simple-icons@v3/icons/github.svg"/></a>
@@ -10,4 +10,4 @@
 	<a href = "https://stackoverflow.com/users/6623589/"><img height="16" width="16" src="https://unpkg.com/simple-icons@v3/icons/stackoverflow.svg"/></a>
 </h1>
 
-*TODO Documentations*
+<p align = "justify">In collaboration with <a href = "https://www.visualcrossing.com/weather-data">VisualCrossing</a> as a Weather Ambassador, I am creating a <i>python wrapper</i> that can be used by any entusiast to fetch the latest data. The Visual Crossing Weather API provides developers with weather data for any programming language or script. The Weather API provides instant and scalable access to both historical weather reports and forecast data in an easy-to-use JSON or text format.</p>
