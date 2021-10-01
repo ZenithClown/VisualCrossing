@@ -5,38 +5,33 @@
 from os import makedirs
 from os.path import (
         join,
-        isdir
+        isdir,
+        dirname,
+        abspath
     )
 
 from pathlib import Path
 from setuptools import setup
 from setuptools import find_packages
 
-PKG = "VisualCrossing" # package-name
-
-# Version File Implementation: https://stackoverflow.com/a/7071358
-VERSIONFILE = join("static", "VERSION")
-try:
-    VERSION = open(VERSIONFILE, "rt").read() # always read as str()
-except FileNotFoundError:
-    raise RuntimeError("unable to run setuptools")
+from VisualCrossing import (
+        __name__,
+        __version__,
+        __homepath__
+    )
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
-# create homepath for logging
-# also, homepath can be used for finding API Key/Configuration File(s)
-HOMEPATH = join(Path.home(), ".visualCrossing")
-
-if not isdir(HOMEPATH):
+if not isdir(__homepath__):
     # create directory for first time installation
     # else, check additional configuration for the model
     # TODO setup additional details file for module configuration
-    makedirs(HOMEPATH)
+    makedirs(__homepath__)
 
 setup(
-        name         = PKG,
-        version      = VERSION,
+        name         = __name__,
+        version      = __version__,
         author       = "Debmalya Pramanik",
         author_email = "dPramanik.official@gmail.com",
 
@@ -51,7 +46,9 @@ setup(
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License"
         ],
+        
         python_requires  = ">=3.7",
-        install_requires = [],
+        install_requires = ["requests"],
+        
         keywords = "weather-api, weather-forecast, visual-crossing, api-rest, wrapper"
     )

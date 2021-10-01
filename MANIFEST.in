@@ -1,5 +1,5 @@
 # include versionfile for information
-inlude static/VERSION
+inlude VisualCrossing/static/VERSION
 
 # include readme file for initial documentation
 # also include other necessary files (like CHANGELOG)
@@ -9,4 +9,4 @@ include *.md
 include LICENSE
 
 # include requirements file
-requirements.txt
+include requirements.txt
