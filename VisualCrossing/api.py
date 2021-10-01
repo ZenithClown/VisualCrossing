@@ -10,6 +10,8 @@ from datetime import datetime as dt
 from requests.exceptions import SSLError
 from os.path import join, dirname, abspath
 
+from .errors import *
+
 class API(object):
     """A basic API for Visual-Crossing Weather Data
 
