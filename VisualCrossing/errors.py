@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 
-import warnings
-
 class WrongDateFormat(Exception):
     """Exception is raised when the passed date is not in `YYYY-MM-DD` format"""
 

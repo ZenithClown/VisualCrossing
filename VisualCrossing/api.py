@@ -1,6 +1,6 @@
 # -*- encoding: utf-8 -*-
 
-import json
+# import json
 import urllib
 import requests
 import warnings
@@ -8,9 +8,9 @@ import pandas as pd
 from io import StringIO
 from datetime import datetime as dt
 from requests.exceptions import SSLError
-from os.path import join, dirname, abspath
+# from os.path import join, dirname, abspath
 
-from .errors import *
+from .errors import * # noqa: F403
 
 class API(object):
     """A basic API for Visual-Crossing Weather Data
