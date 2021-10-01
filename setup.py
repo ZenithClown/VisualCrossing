@@ -47,6 +47,10 @@ setup(
             "License :: OSI Approved :: MIT License"
         ],
         
+        project_urls = {
+            "Bug Tracker" : "https://github.com/ZenithClown/VisualCrossing/issues"
+        },
+        
         python_requires  = ">=3.7",
         install_requires = ["requests"],
         
