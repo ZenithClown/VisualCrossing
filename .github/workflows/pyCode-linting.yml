@@ -6,9 +6,13 @@ name: pyCode Linting with flake8
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'VisualCrossing'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ master ]
+    paths:
+      - 'VisualCrossing'
 
 jobs:
   build:
