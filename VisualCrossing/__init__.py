@@ -13,3 +13,4 @@ __homepath__ = join(Path.home(), ".visualCrossing")
 __affiliation__ = "Indian Institute of Technology (IIT-ISM), Dhanbad"
 
 # init-time option registrations
+from .api import API
