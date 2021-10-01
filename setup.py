@@ -47,7 +47,7 @@ setup(
         url         = "https://github.com/ZenithClown/VisualCrossing",
         packages    = find_packages(),
         classifiers = [
-            "Development Status :: 1 - Planning",
+            "Development Status :: 1 - Beta",
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License"
         ],
