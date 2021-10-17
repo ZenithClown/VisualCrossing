@@ -1,6 +1,3 @@
-# include versionfile for information
-inlude VisualCrossing/static/VERSION
-
 # include readme file for initial documentation
 # also include other necessary files (like CHANGELOG)
 include *.md
