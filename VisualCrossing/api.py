@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 
-# import json
+import os
+import json
 import urllib
 import requests
 import warnings
@@ -8,11 +9,26 @@ import pandas as pd
 from io import StringIO
 from datetime import datetime as dt
 from requests.exceptions import SSLError
-# from os.path import join, dirname, abspath
 
 from .errors import * # noqa: F403
 
-class API(object):
+class _base(object):
+    """Base Class that Loads attributes from `config` File"""
+    
+    def __init__(self, **kwargs):
+        # self.__dict__.update(json.load(open(os.path.join(path, "config.json"), "r")))
+        for k, v in json.load(open(os.path.join(__homepath__, "config.json"), "r")).items():
+            if k in self.__valid_keys__ and k not in kwargs.keys():
+                setattr(self, k, v)
+            else:
+                setattr(self, k, kwargs[k] or v)
+        
+    @property
+    def __valid_keys__(self):
+        return ["key", "unitGroup", "contentType"]
+
+
+class API(_base):
     """A basic API for Visual-Crossing Weather Data
 
     :param date: Date for which weather data is required. Pass the date in `YYYY-MM-DD` format,
@@ -33,14 +49,16 @@ class API(object):
     def __init__(
             self,
             date     : str,
-            APIKey   : str,
+            # APIKey   : str,
             location : str or tuple,
             **kwargs
         ):
-        # default constructor
+        # get values from base class
+        super().__init__()
 
+        # default constructor values
         self.date     = date
-        self.APIKey   = APIKey
+        # self.APIKey   = APIKey
         self._location = location
 
         # define keyword arguments
@@ -82,7 +100,7 @@ class API(object):
         return "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/" + \
                self.queryType() + \
                "&location=" + urllib.parse.quote(self._location) + \
-               "&key=" + self.APIKey + \
+               "&key=" + self.key + \
                f"&contentType={self.contentType}"
 
 
