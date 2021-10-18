@@ -1,6 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 from json import load
+from os.path import join
+from pathlib import Path
+
+from . import __homepath__
 
 # set configuration option
 def config(file : str = None) -> dict:

@@ -33,8 +33,23 @@ class base(object):
             # use defaults
             response = self.__args_default__()
 
+        self.__set_attr__(response, **kwargs)
+
+
+    def set_config(self, file : str, **kwargs):
+        _, response = config(file)
+        self.__set_attr__(response, **kwargs)
+
+
+    def __set_attr__(self, response : dict, **kwargs):
         for k, v in response.items():
-            setattr(self, k, v)
+            # set all attribute as class attribute
+            # to override any attribute just send the specific
+            # attribute, and the same is given priority over configuration file
+            if k in self.__optional_args__ and k not in kwargs.keys():
+                setattr(self, k, v)
+            else:
+                setattr(self, k, kwargs[k] or v)
 
 
     def __args_default__(self) -> dict:
@@ -167,3 +182,7 @@ class base(object):
             write_json(attrs, outfile) # write to file
 
         return True
+
+
+    def get_key_from_config(self):
+        pass

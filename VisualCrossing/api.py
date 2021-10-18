@@ -14,10 +14,29 @@ from ._api import base
 from .errors import * # noqa: F403
 
 class API(base):
-    """A basic API for Visual-Crossing Weather Data
+    """A python wrapper to fetch weather data from VisualCrossing
+
+    The function is devised keeping in mind - minimal coding approach, and recurrent job-scheduling
+    for any person. All the keyword arguments that the API accepts are same as that available
+    in the Visual Crossing API Documentation (check README for more information). The API is configured
+    with default values, which is easier to understand and retreive. However, the data requires certain
+    required arguments defined below. The same can also be obtained from `config.json` file, but is not
+    recomended.
 
     :param date: Date for which weather data is required. Pass the date in `YYYY-MM-DD` format,
                  or pass `FORCAST` to get the forecasted data for a particular date.
+
+    :param APIKey: All VisualCrossing API calls are made with an API key associated with your billing/free
+                   account. Get yourself a new Key, if you do not have one. It is advised that the key
+                   is not written to a configuration file, and suitable `environment variables` should
+                   be called/defined. However, there is a dedicated function :func:`get_key_from_config`
+                   which can be used to get `APIKey` from configuration file, which should be defined
+                   under `__api_key__`. The key can also be written into file either passing `key` or
+                   `__api_key__` as a keyword argument to :func:`generate_config`. # TODO
+
+    :param location: Location of which the weather is required. Defaults to either a place name (like `india`),
+                     or, you can directly pass the coordinates of the particular place as (like `(long, lat)`),
+                     or, you can also pass a list/set of locations (either name or coordinates.) # TODO
 
     :Keyword Arguments:
         * *endDate* (``str``) -- When end date is defined, the api fetches data for a given date
@@ -34,24 +53,20 @@ class API(base):
     def __init__(
             self,
             date     : str,
-            # APIKey   : str,
-            location : str or tuple,
+            APIKey   : str,
+            location : str or tuple or list or dict,
             **kwargs
         ):
         # get values from base class
-        super().__init__()
+        super().__init__(**kwargs)
 
         # default constructor values
         self.date     = date
-        # self.APIKey   = APIKey
+        self.APIKey   = APIKey
         self._location = location
 
         # define keyword arguments
         self.endDate = kwargs.get("endDate", None)
-        # self.unitGroup = kwargs.get("unitGroup", "metric")
-        self.contentType = kwargs.get("contentType", "csv")
-        self.aggregateHours = kwargs.get("aggregateHours", 24)
-
 
         # self.checkParams() # check all parameters
 
@@ -85,7 +100,7 @@ class API(base):
         return "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/" + \
                self.queryType() + \
                "&location=" + urllib.parse.quote(self._location) + \
-               "&key=" + self.key + \
+               "&key=" + self.APIKey + \
                f"&contentType={self.contentType}"
 
 
