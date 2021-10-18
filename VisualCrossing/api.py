@@ -13,22 +13,6 @@ from requests.exceptions import SSLError
 from ._api import base
 from .errors import * # noqa: F403
 
-class _base(object):
-    """Base Class that Loads attributes from `config` File"""
-    
-    def __init__(self, **kwargs):
-        # self.__dict__.update(json.load(open(os.path.join(path, "config.json"), "r")))
-        for k, v in json.load(open(os.path.join(__homepath__, "config.json"), "r")).items():
-            if k in self.__valid_keys__ and k not in kwargs.keys():
-                setattr(self, k, v)
-            else:
-                setattr(self, k, kwargs[k] or v)
-        
-    @property
-    def __valid_keys__(self):
-        return ["key", "unitGroup", "contentType"]
-
-
 class API(base):
     """A basic API for Visual-Crossing Weather Data
 
