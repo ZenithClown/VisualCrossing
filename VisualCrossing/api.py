@@ -10,6 +10,7 @@ from io import StringIO
 from datetime import datetime as dt
 from requests.exceptions import SSLError
 
+from ._api import base
 from .errors import * # noqa: F403
 
 class _base(object):
@@ -28,7 +29,7 @@ class _base(object):
         return ["key", "unitGroup", "contentType"]
 
 
-class API(_base):
+class API(base):
     """A basic API for Visual-Crossing Weather Data
 
     :param date: Date for which weather data is required. Pass the date in `YYYY-MM-DD` format,
@@ -63,7 +64,7 @@ class API(_base):
 
         # define keyword arguments
         self.endDate = kwargs.get("endDate", None)
-        self.unitGroup = kwargs.get("unitGroup", "metric")
+        # self.unitGroup = kwargs.get("unitGroup", "metric")
         self.contentType = kwargs.get("contentType", "csv")
         self.aggregateHours = kwargs.get("aggregateHours", 24)
 
