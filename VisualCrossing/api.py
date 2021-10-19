@@ -5,8 +5,10 @@ import json
 import urllib
 import requests
 import warnings
+import numpy as np
 import pandas as pd
 from io import StringIO
+from copy import deepcopy
 from datetime import datetime as dt
 from requests.exceptions import SSLError
 
@@ -63,7 +65,7 @@ class API(base):
         # default constructor values
         self.date     = date
         self.APIKey   = APIKey
-        self._location = location
+        self._location = location if type(location) == str else iter(location)
 
         # define keyword arguments
         self.endDate = kwargs.get("endDate", None)
@@ -93,15 +95,15 @@ class API(base):
     #                 )
 
 
-    @property
-    def BaseURL(self) -> str:
+    # @property
+    def BaseURL(self, location : str) -> str:
         """Base URL for fetching weather data. Check Visual-Crossing documentation for information."""
 
         return "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/weatherdata/" + \
                self.queryType() + \
-               "&location=" + urllib.parse.quote(self._location) + \
+               "&location=" + urllib.parse.quote(location) + \
                "&key=" + self.APIKey + \
-               f"&contentType={self.contentType}"
+               f"&contentType=csv" # for now, always get as csv
 
 
     def queryType(self) -> str:
@@ -129,26 +131,55 @@ class API(base):
                "&dayStartTime=0:0:00&dayEndTime=23:59:59" + queryDate
 
 
-    def get(self, type : str = pd.DataFrame, **kwargs):
+    def _get_df_converted_data(self, loc : str, ssl_verify : bool):
+        """Retreive weather data, and convert it into a pandas dataframe"""
+
+        link = self.BaseURL(loc)
+        
+        try:
+            response = requests.get(link, verify = ssl_verify)
+        except SSLError:
+            pass
+
+        code = response.status_code
+        _weather_data_df = pd.read_csv(StringIO(response.text))
+
+        return code, deepcopy(_weather_data_df)
+
+
+    def get(self, **kwargs):
         """Fetch API Data and Return in desirable Format"""
 
         ssl_verify = kwargs.get("ssl_verify", False)
 
-        if ssl_verify:
+        if not ssl_verify:
             warnings.warn("using `ssl_verify = True`", VerificationWarning)
+        
+        # try:
+        if type(self._location) != str:
+            total = np.array([self._get_df_converted_data(loc, ssl_verify) for loc in self._location])
+            code = set(total[:, 0])
+            code = 200 if len(code) == 1 and list(code)[0] == 200 else list(code.discard(200))[0]
+            data = pd.concat(total[:, 1])
+            del total # house keeping - as pandas holds object into memory
+        else:
+            code, data = self._get_df_converted_data(self._location, ssl_verify)
+        # except SSLError as err:
+        #     # raise ValueError(f"Failed for {err}. If you understand the risk, and want to continue, set `ssl_verify = False`")
+        #     pass
 
-        try:
-            data = requests.get(self.BaseURL, verify = ssl_verify)
-        except SSLError as err:
-            # raise ValueError(f"Failed for {err}. If you understand the risk, and want to continue, set `ssl_verify = False`")
-            pass
-
-        if data.status_code != 200:
+        if code != 200:
             raise NoDataFetched(f"unable to fetch any data, recevied code {data.status_code}")
 
         if self.contentType == "csv":
-            data = pd.read_csv(StringIO(data.text))
+            data = data.to_csv(index = False)
+            # data = pd.read_csv(StringIO(data.text))
+        elif self.contentType == "dataframe":
+            pass # return data as is
         else: # data type is JSON
-            data = data.json()
+            # currently, the DataFrame is directly converted into JSON
+            # with `.to_json()` function instead of the `data.json()` as
+            # obtained from the API
+            data = data.to_json()
 
-        return data
+        return deepcopy(data)

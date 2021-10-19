@@ -1,0 +1,28 @@
+{
+    "__header__": {
+        "program": "VisualCrossing",
+        "version": "0.0.2-alpha",
+        "homepath": "/home/debmalya/.visualCrossing"
+    },
+    "platform": {
+        "platform": "Linux-5.4.0-88-generic-x86_64-with-glibc2.29",
+        "architecture": "x86_64",
+        "version": "#99-Ubuntu SMP Thu Sep 23 17:29:00 UTC 2021",
+        "system": "Linux",
+        "processor": "x86_64",
+        "uname": [
+            "Linux",
+            "d--------",
+            "5.4.0-88-generic",
+            "#99-Ubuntu SMP Thu Sep 23 17:29:00 UTC 2021",
+            "x86_64",
+            "x86_64"
+        ]
+    },
+    "attributes": {
+        "unitGroup": "metric",
+        "contentType": "dataframe",
+        "aggregateHours": 24
+    },
+    "timestamp": "Mon Oct 18 15:35:29 2021"
+}
