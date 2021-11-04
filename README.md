@@ -14,3 +14,7 @@
 <p align = "justify"><a href = "https://www.visualcrossing.com/">VisualCrossing</a> also provides free access to weather data. In <b>free version</b> you are allowed to fetch <b>1000 records/day</b> and the limit can be increased further by doing some fun activities like writing a blog post or sharing the news in social media! Create a free account from <a href = "https://www.visualcrossing.com/weather/weather-data-services">https://www.visualcrossing.com/weather/weather-data-services</a> and using the API key, and start by <code>pip install VisualCrossing</code>.</p>
 
 <p align = "justify"><b>NOTE:</b> the product is currently in <b><code>Development Status :: 4 - Beta</code></b>, and much changes are to come and developed. Your opinions, feedback, and enhancement is much appreciated!</p>
+
+## Contributing
+
+Contributions are welcomed. Do check our [contributing guide](CONTRIBUTING.md) for more information.
