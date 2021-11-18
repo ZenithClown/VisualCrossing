@@ -1,7 +1,4 @@
--- ****************** SqlDBM: Microsoft SQL Server ******************
--- ******************************************************************
-
--- ************************************** [Weather]
+-- ****************************** [Weather]**************************
 CREATE TABLE [Weather]
 (
  [LocationId]         int NULL ,
@@ -58,11 +55,7 @@ CREATE NONCLUSTERED INDEX [fkIdx_97] ON [Weather]
 GO
 
 
-
--- ****************** SqlDBM: Microsoft SQL Server ******************
--- ******************************************************************
-
--- ************************************** [WeatherTypeMaster]
+-- **************** [WeatherTypeMaster]
 CREATE TABLE [WeatherTypeMaster]
 (
  [WeatherTypeName] varchar(50) NOT NULL ,
@@ -83,10 +76,7 @@ CREATE NONCLUSTERED INDEX [fkIdx_94] ON [WeatherTypeMaster]
 
 GO
 
--- ****************** SqlDBM: Microsoft SQL Server ******************
--- ******************************************************************
-
--- ************************************** [WeatherGroupMaster]
+-- *************************** [WeatherGroupMaster]
 CREATE TABLE [WeatherGroupMaster]
 (
  [GroupId]   int NOT NULL ,
@@ -98,10 +88,8 @@ CREATE TABLE [WeatherGroupMaster]
 );
 GO
 
--- ****************** SqlDBM: Microsoft SQL Server ******************
--- ******************************************************************
 
--- ************************************** [StateMaster]
+-- *************************** [StateMaster]
 CREATE TABLE [StateMaster]
 (
  [StateId]   int NOT NULL ,
@@ -112,10 +100,8 @@ CREATE TABLE [StateMaster]
 );
 GO
 
--- ****************** SqlDBM: Microsoft SQL Server ******************
--- ******************************************************************
 
--- ************************************** [RegionMaster]
+-- ******************** [RegionMaster]
 CREATE TABLE [RegionMaster]
 (
  [RegionId]   int NOT NULL ,
@@ -126,10 +112,8 @@ CREATE TABLE [RegionMaster]
 );
 GO
 
--- ****************** SqlDBM: Microsoft SQL Server ******************
--- ******************************************************************
 
--- ************************************** [Location Data]
+-- *************************** [Location Data]
 CREATE TABLE [Location Data]
 (
  [LocationId]     int NOT NULL ,
@@ -165,10 +149,7 @@ CREATE NONCLUSTERED INDEX [fkIdx_72] ON [Location Data]
 
 GO
 
--- ****************** SqlDBM: Microsoft SQL Server ******************
--- ******************************************************************
-
--- ************************************** [DataSource]
+-- *************************** [DataSource]
 CREATE TABLE [DataSource]
 (
  [DataSourceId]   int NOT NULL ,
