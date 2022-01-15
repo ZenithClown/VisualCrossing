@@ -2,7 +2,7 @@
 # guide available at: https://pip.pypa.io/en/stable/user_guide/#requirements-files
 # information on using requirements.txt https://stackoverflow.com/questions/7225900
 certifi==2021.10.8
-charset-normalizer==2.0.7
+charset-normalizer==2.0.10
 idna==3.3
 numpy==1.21.3
 pandas==1.3.4
