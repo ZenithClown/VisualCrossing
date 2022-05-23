@@ -1,7 +1,7 @@
 # keep a list of items to be installed using `pip install`
 # guide available at: https://pip.pypa.io/en/stable/user_guide/#requirements-files
 # information on using requirements.txt https://stackoverflow.com/questions/7225900
-certifi==2021.10.8
+certifi==2022.5.18.1
 charset-normalizer==2.0.10
 idna==3.3
 numpy==1.22.1
