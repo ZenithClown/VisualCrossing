@@ -1,13 +1,8 @@
-# keep a list of items to be installed using `pip install`
-# guide available at: https://pip.pypa.io/en/stable/user_guide/#requirements-files
-# information on using requirements.txt https://stackoverflow.com/questions/7225900
-certifi==2022.12.7
-charset-normalizer==2.1.0
-idna==3.3
+# the requirements.txt is generated with minimal packages requirements
+# and basic/core python libraries like `requests` are removed from tracking
+
+# guide link: https://pip.pypa.io/en/stable/user_guide/#requirements-files
+# more information: https://stackoverflow.com/questions/7225900
+
 numpy==1.24.2
 pandas==1.5.2
-python-dateutil==2.8.2
-pytz==2021.3
-requests==2.28.2
-six==1.16.0
-urllib3==1.26.15
