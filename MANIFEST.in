@@ -5,7 +5,8 @@ include *.md
 # include licensing files
 include LICENSE
 
-# include requirements file
+# include version, requirements file
+include VERSION
 include requirements.txt
 
 # include all from assets
