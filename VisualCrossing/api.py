@@ -55,7 +55,7 @@ class base(object):
             raise ValueError(f"Start/End Value is Accepted as either `str` or `dt.date`, got ({type(value)}).")
         
         if _is_string:
-            value = dt.datetime.strptime("2023-01-13", "%Y-%m-%d").date()
+            value = dt.datetime.strptime(value, "%Y-%m-%d").date()
         else:
             value = str(value)
             
@@ -154,11 +154,11 @@ class API(base):
         for location in TQ(self.locations):
             _resolved_uri = self.URI.format(
                 location = urllib.parse.quote(location), # iterate over all locations
-                start = self.start, end = self.start, key = self.key
+                start = self.start, end = self.end, key = self.key
             )
 
             try:
-                r = requests.get(_resolved_uri, verify = False)
+                r = requests.get(_resolved_uri, verify = True)
                 data = r.json()
 
                 responses.append(data)
