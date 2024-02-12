@@ -4,5 +4,5 @@
 # guide link: https://pip.pypa.io/en/stable/user_guide/#requirements-files
 # more information: https://stackoverflow.com/questions/7225900
 
-numpy==1.24.2
+numpy==1.26.4
 pandas==1.5.2
